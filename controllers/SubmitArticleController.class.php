@@ -33,7 +33,7 @@ class SubmitArticleController extends DatabaseConnection
 				else
 				{
 					$error = false;
-					$this->db->sendArticle($_POST['title'], $_POST["text"], Sessions::getID());
+					$this->dbArticles->sendArticle($_POST['title'], $_POST["text"], Sessions::getID());
 					$this->data["success"] = "Article has been sent";
 				}
 			}

@@ -13,7 +13,7 @@ class ReviewsController extends DatabaseConnection
 
 		$this->data = $data;
 
-		$this->data["reviewsTable"] = $this->db->getReviews($_GET["article"]);
+		$this->data["reviewsTable"] = $this->dbReviews->getReviews($_GET["article"]);
 
 		foreach (range(1, 3) as $number)
 		{
@@ -49,7 +49,7 @@ class ReviewsController extends DatabaseConnection
 
 		foreach($this->data["reviewsTable"] as $index => $review)
 		{
-			$user = $this->db->getUser($review["reviewer_id"]);
+			$user = $this->dbUsers->getUser($review["reviewer_id"]);
 			$this->data["reviewsTable"][$index]["reviewer_name"] = $user["first_name"] . " " . $user["last_name"];
 		}
 

@@ -16,7 +16,7 @@ class AdminController extends DatabaseConnection
 			{
 				if($rights != "")
 				{
-					$this->db->setRights($id, $rights);
+					$this->dbUsers->setRights($id, $rights);
 					if($id == $_SESSION["id"])
 					{
 						$_SESSION["rights"] = $rights;
@@ -27,10 +27,10 @@ class AdminController extends DatabaseConnection
 		else if(isset($_GET["remove"]))
 		{
 			$this->data["deleted"] = true;
-			$this->db->deleteUser($_GET["remove"]);
+			$this->dbUsers->deleteUser($_GET["remove"]);
 		}
 
-		$this->data["adminTable"] = $this->db->getAllUsers();
+		$this->data["adminTable"] = $this->dbUsers->getAllUsers();
 
 		MyApplication::renderInTwig("admin.twig", $this->data);
 	}

@@ -11,7 +11,7 @@ class SubmitReviewController extends DatabaseConnection
 
 		if(isset($_GET["article"]))
 		{
-			$this->data["article"] = $this->db->getAllArticleByID($_GET["article"]);
+			$this->data["article"] = $this->dbArticles->getAllArticleByID($_GET["article"]);
 		}
 		if(isset($this->data["article"]) == false || $this->data["article"] == false)
 		{
@@ -37,7 +37,7 @@ class SubmitReviewController extends DatabaseConnection
 				else
 				{
 					$error = false;
-					$this->db->sendReview($_POST["text"], Sessions::getID(), $_GET["article"],
+					$this->dbReviews->sendReview($_POST["text"], Sessions::getID(), $_GET["article"],
 					                      $_POST["rating_1"], $_POST["rating_2"], $_POST["rating_3"]);
 				}
 			}

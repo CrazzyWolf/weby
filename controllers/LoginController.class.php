@@ -31,7 +31,7 @@ class LoginController extends DatabaseConnection
 
 	public function verifyAndLogin($email, $password)
 	{
-		if($this->db->login($email, $password))
+		if($this->dbUsers->login($email, $password))
 		{
 			Sessions::redirect("index.php");
 		}

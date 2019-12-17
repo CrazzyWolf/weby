@@ -7,7 +7,7 @@ class ArticlesController extends DatabaseConnection
 		parent::__construct();
 		$this->data = $data;
 
-		$this->data["articlesTable"] = $this->db->getAllPublishedArticles();
+		$this->data["articlesTable"] = $this->dbArticles->getAllPublishedArticles();
 
 		parent::overallRating();
 

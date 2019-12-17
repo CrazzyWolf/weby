@@ -45,7 +45,7 @@ class RegisterController extends DatabaseConnection
 
 	public function verifyAndRegister($email, $first_name, $last_name, $password)
 	{
-		$result = $this->db->register($email, $first_name, $last_name, $password);
+		$result = $this->dbUsers->register($email, $first_name, $last_name, $password);
 		if(is_bool($result))
 		{
 			if($result)

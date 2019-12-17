@@ -47,7 +47,7 @@ class ProfileController extends DatabaseConnection
 
 	public function updateProfile($email, $first_name, $last_name, $password)
 	{
-		$result = $this->db->updateProfile(Sessions::getID(), $email,
+		$result = $this->dbUsers->updateProfile(Sessions::getID(), $email,
 		                                   $first_name, $last_name, $password);
 		if(is_bool($result))
 		{

@@ -7,16 +7,37 @@ abstract class DatabaseConnection
 	protected $db;
 	protected $data;
 
+	private $pdo;
+
 	protected function __construct()
 	{
-		require_once(DIRECTORY_MODELS . "Database.class.php");
-		$this->db = new Database();
-		$this->db->connectToDB();
+		require_once(DIRECTORY_MODELS . "DatabaseArticles.class.php");
+		require_once(DIRECTORY_MODELS . "DatabaseReviews.class.php");
+		require_once(DIRECTORY_MODELS . "DatabaseUsers.class.php");
+		$this->connectToDB();
+		$this->dbArticles = new DatabaseArticles($this->pdo);
+		$this->dbReviews = new DatabaseReviews($this->pdo);
+		$this->dbUsers = new DatabaseUsers($this->pdo);
 	}
+
+	private function connectToDB()
+	{
+		try
+		{
+			$this->pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+			//$this->pdo->exec("set names utf32");
+			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch(PDOException $e)
+		{
+			echo "Connection failed: " . $e->getMessage();
+		}
+	}
+
 
 	protected function overallRating()
 	{
-		$reviews = $this->db->getAllReviews();
+		$reviews = $this->dbReviews->getAllReviews();
 
 		$stars = array();
 		$ratings = array();
