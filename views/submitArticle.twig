@@ -1,0 +1,46 @@
+{% extends "basePages.twig" %}
+
+{% block content %}
+    <form class="user" action="index.php?web=submitArticle" method="post">
+        <div class="col-5">
+            <div class="card shadow mb-2">
+                {% if error != "" and title != "" %}
+                    <textarea class="form-control" name="title" id="title" rows="1">{{ title }}</textarea>
+                {% else %}
+                    <textarea class="form-control" name="title" id="title" placeholder="Title" rows="1"></textarea>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-auto">
+            <div class="card shadow mb-2">
+                    <script src="ckeditor/ckeditor.js"></script>
+                    {% if error != "" and text != "" %}
+                        <textarea id="text" class="form-control" name="text" id="text" rows="20">{{ text }}</textarea>
+                    {% else %}
+                        <textarea id="text" class="form-control" name="text" id="text" placeholder="Text of article"
+                                  rows="20"></textarea>
+                    {% endif %}
+                    <script>
+                        CKEDITOR.replace( 'text' );
+                    </script>
+            </div>
+        </div>
+        {% if error != "" %}
+            <div class="col-auto">
+                <label class="text-danger" role="alert">{{ error }}</label>
+            </div>
+        {% elseif success != "" %}
+            <div class="col-auto">
+                <label class="text-success" role="alert">{{ success }}</label>
+            </div>
+        {% endif %}
+        <div class="col-2">
+            <div class="card shadow mb-2">
+                <button name="submit" class="btn btn-primary btn-block float-left">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+
+{% endblock content %}

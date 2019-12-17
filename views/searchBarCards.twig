@@ -1,0 +1,27 @@
+{% extends "searchBar.twig" %}
+
+{% block script %}
+    <script>
+        function search()
+        {
+            var input, filter, uList, list, a, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            uList = document.getElementById("uList");
+            list = uList.getElementsByTagName("li");
+            for (i = 0; i < list.length; i++)
+            {
+                a = list[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1)
+                {
+                    list[i].style.display = "";
+                }
+                else
+                {
+                    list[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+{% endblock script %}

@@ -1,0 +1,15 @@
+{% macro star(number) %}
+    <div class='starrr' id='star{{ number }}'></div>
+    <input type='hidden' name='rating_{{ number }}' value='3' id='star{{ number }}_input' />
+    <script>
+        var $s{{ number }}input = $('#star{{ number }}_input');
+        $('#star{{ number }}').starrr({
+            max: 5,
+            rating: $s{{ number }}input.val(),
+            change: function (e, value)
+            {
+                $s{{ number }}input.val(value).trigger('input');
+            }
+        });
+    </script>
+{% endmacro %}

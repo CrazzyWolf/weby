@@ -1,0 +1,56 @@
+{% extends "baseReview.twig" %}
+
+{% block content %}
+    {% if article.name %}
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+        <script src="dist/starrr.js"></script>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="dist/starrr.css">
+        {% import "starMacro.twig" as starMacro %}
+
+        <form class="user" action="index.php?web=submitReview&article={{ article.id }}" method="post">
+            <div class="col-auto">
+                <h4>Review of {{ article.name }}</h4>
+                <div class="card shadow mb-2">
+                    <script src="ckeditor/ckeditor.js"></script>
+                    {% if error != "" and text != "" %}
+                        <textarea id="text" class="form-control" name="text" id="text" rows="20">{{ text }}</textarea>
+                    {% else %}
+                        <textarea id="text" class="form-control" name="text" id="text" placeholder="Text of review"
+                                  rows="20"></textarea>
+                    {% endif %}
+                    <script>
+                        CKEDITOR.replace('text');
+                    </script>
+                </div>
+
+                {{ starMacro.star(1) }}
+                Interestingness
+                <br>
+                {{ starMacro.star(2) }}
+                Readability
+                <br>
+                {{ starMacro.star(3) }}
+                Overall rating
+                <br>
+            </div>
+
+            {% if error != "" %}
+                <div class="col-auto">
+                    <label class="text-danger" role="alert">{{ error }}</label>
+                </div>
+            {% endif %}
+            <div class="col-2">
+                <div class="card shadow mb-2">
+                    <button name="submit" class="btn btn-primary btn-block float-left">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% else %}
+        <div class="text-danger" role="alert">{{ error }}</div>
+        <a href="index.php?web=reviews">&larr; Back to Reviews</a>
+    {% endif %}
+
+{% endblock content %}

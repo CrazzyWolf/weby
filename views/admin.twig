@@ -1,0 +1,93 @@
+{% extends "baseAdmin.twig" %}
+
+{% block searchBar %}
+    {% include "searchBarTable.twig" %}
+{% endblock searchBar %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        {% if saved == true %}
+            <div class="alert alert-success" role="alert">
+                Saved
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% elseif deleted == true %}
+            <div class="alert alert-danger" role="alert">
+                User deleted
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+
+        <!-- DataTales Example -->
+        <form action="index.php?web=admin" method="post">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="font-weight-bold text-primary float-left">User list</h6>
+                    <button href="" name="submit" class="btn btn-success btn-icon-split float-right">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-check"></i>
+                            </span>
+                        <span class="text">Save</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Email</th>
+                                <th>Rights</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody id="userTable">
+                            {% for user in adminTable %}
+                                <tr>
+                                    <td>{{ user.first_name }}</td>
+                                    <td>{{ user.last_name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <select name="{{ user.id }}" class="selectpicker">
+                                            {% if user.rights == "aut" %}
+                                                <option value="" selected hidden>Author</option>
+                                            {% elseif user.rights == "rev" %}
+                                                <option value="" selected hidden>Reviewer</option>
+                                            {% elseif user.rights == "adm" %}
+                                                <option value="" selected hidden>Admin</option>
+                                            {% else %}
+                                                <option value="" selected hidden>Unknown</option>
+                                            {% endif %}
+                                            <option value="aut">Author</option>
+                                            <option value="rev">Reviewer</option>
+                                            <option value="adm">Admin</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        {% if user.rights != "adm" %}
+                                            <a href="index.php?web=admin&remove={{ user.id }}"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <!-- /.container-fluid -->
+
+{% endblock content %}

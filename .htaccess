@@ -1,0 +1,4 @@
+DirectoryIndex http://localhost/index.php
+
+ErrorDocument 404 http://localhost/index.php?web=404
+ErrorDocument 403 http://localhost/index.php?web=403

@@ -1,0 +1,51 @@
+{% extends "basePages.twig" %}
+
+{% block searchBar %}
+    {% include "searchBarCards.twig" %}
+{% endblock searchBar %}
+
+{% import "ratingMacro.twig" as ratingMacro %}
+
+{% block content %}
+    {{ ratingMacro.overallRating(rating_1) }}
+    Interestingness
+    <br>
+    {{ ratingMacro.overallRating(rating_2) }}
+    Readability
+    <br>
+    {{ ratingMacro.overallRating(rating_3) }}
+    Overall rating
+    <hr>
+
+    <ul id="uList" class="list-unstyled">
+        {% for review in reviewsTable %}
+            <li>
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a href="#a{{ review.id }}" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                       aria-expanded="true">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            {{ review.reviewer_name }}
+                        </h6>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse show" id="a{{ review.id }}">
+                        <div class="card-body">
+                            {{ review.content | raw }}
+                            {{ ratingMacro.singleRating(review.rating_1) }}
+                            Interestingness
+                            <br>
+                            {{ ratingMacro.singleRating(review.rating_2) }}
+                            Readability
+                            <br>
+                            {{ ratingMacro.singleRating(review.rating_3) }}
+                            Overall rating
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
+

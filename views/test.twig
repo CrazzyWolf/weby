@@ -1,0 +1,40 @@
+{% extends "basePages.twig" %}
+
+{% block searchBar %}
+    {% include "searchBarCards.twig" %}
+{% endblock searchBar %}
+
+{% import "ratingMacro.twig" as ratingMacro %}
+
+{% block content %}
+    <ul id="uList" class="list-unstyled">
+        {% for article in articlesTable %}
+            <li>
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a href="#a{{ article.id }}" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                       aria-expanded="true">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            {{ article.name }}
+                            {{ ratingMacro.overallRating(article.rating) }}
+                        </h6>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse" id="a{{ article.id }}">
+                        <div class="card-body">
+                            {{ article.content | raw }}
+                            <hr>
+                            <a href="index.php?web=showReviews&article={{ article.id }}"
+                               class="btn btn-primary btn-sm col-2">
+                                <i class="fa fa-star"></i>
+                                Show reviews
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
+

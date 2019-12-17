@@ -1,0 +1,21 @@
+<div class="input-group col-4">
+	<input id="searchInput" onkeyup="search()" type="text" class="form-control bg-light border-0 small"
+	       placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+	<div class="input-group-append">
+		<button onclick="deleteText()" class="btn btn-primary" type="button">
+			<i class="fas fa-trash fa-sm"></i>
+		</button>
+	</div>
+</div>
+
+<script>
+    function deleteText()
+    {
+        document.getElementById("searchInput").value = "";
+        search();
+    }
+</script>
+
+{% block script %}
+
+{% endblock script %}
