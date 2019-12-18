@@ -4,7 +4,9 @@ require_once DIRECTORY_MODELS . "Sessions.class.php";
 
 abstract class DatabaseConnection
 {
-	protected $db;
+	protected $dbArticles;
+	protected $dbReviews;
+	protected $dbUsers;
 	protected $data;
 
 	private $pdo;

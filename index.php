@@ -20,7 +20,6 @@ class MyApplication extends DatabaseConnection
 			"submitArticle" => "SubmitArticleController",
 			"submitReview" => "SubmitReviewController",
 			"userArticles" => "UserArticlesController",
-			"test" => "ArticlesController",
 			"review" => "ReviewController",
 			"showReviews" => "ReviewsController",
 			"profile" => "ProfileController",
@@ -48,13 +47,6 @@ class MyApplication extends DatabaseConnection
 
 	public function appStart()
 	{
-		/*
-		foreach($_POST as $key => $value)
-		{
-			echo "Field " . htmlspecialchars($key) . " is " . htmlspecialchars($value) . "<br>";
-		}
-		 */
-
 		$data = array();
 		session_start();
 		$accessAllowed = true;

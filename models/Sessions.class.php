@@ -7,11 +7,6 @@ class Sessions
 		return isset($_SESSION["id"]) && !$_SESSION["id"] == "";
 	}
 
-	public static function getID()
-	{
-		return $_SESSION["id"];
-	}
-
 	public static function isAdmin() : bool
 	{
 		return $_SESSION["rights"] == "adm";
@@ -20,6 +15,11 @@ class Sessions
 	public static function isReviewer() : bool
 	{
 		return $_SESSION["rights"] == "rev";
+	}
+
+	public static function getID()
+	{
+		return $_SESSION["id"];
 	}
 
 	public static function logout()
