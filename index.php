@@ -3,6 +3,8 @@
 require_once "settings.inc.php";
 require_once DIRECTORY_CONTROLLERS . "DatabaseConnection.class.php";
 
+header("charset=utf-32_czech");
+
 class MyApplication extends DatabaseConnection
 {
 	private $webPages;
@@ -35,7 +37,6 @@ class MyApplication extends DatabaseConnection
 			"submitReview",
 			"userArticles",
 			"review",
-			"showReviews",
 			"profile"
 		);
 		$this->mustNotBeLoggedPages = array

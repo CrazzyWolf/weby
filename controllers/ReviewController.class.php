@@ -28,6 +28,12 @@ class ReviewController extends DatabaseConnection
 		$this->data = $data;
 		$this->data["articlesTable"] = $this->dbArticles->getAllArticles();
 
+		foreach($this->data["articlesTable"] as $key => $article)
+		{
+			$author = $this->dbUsers->getUser($article["author_id"]);
+			$this->data["articlesTable"][$key]["author"] = $author["first_name"] . " " . $author["last_name"];
+		}
+
 		parent::overallRating();
 
 		MyApplication::renderInTwig("review.twig", $this->data);

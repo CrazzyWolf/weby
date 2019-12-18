@@ -3,7 +3,6 @@
 
 <head>
 
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -61,6 +60,26 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
+            {% if rights == "rev" or rights == "adm" %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseReview" aria-expanded="true" aria-controls="collapseReview">
+                        <i class="fas fa-fw fa-book-open"></i>
+                        <span>Reviews</span>
+                    </a>
+                    <div id="collapseReview" class="collapse" aria-labelledby="headingProfile" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Reviews</h6>
+                            {% if rights == "rev" %}
+                                <a class="collapse-item" id="review.twig" href="index.php?web=review">Write Review</a>
+                            {% else %}
+                                <a class="collapse-item" id="review.twig" href="index.php?web=review">Article control</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            {% endif %}
+
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProfile" aria-expanded="true" aria-controls="collapseProfile">
                     <i class="fas fa-fw fa-user"></i>
@@ -91,22 +110,6 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Admin</h6>
                             <a class="collapse-item" id="admin.twig" href="index.php?web=admin">User control</a>
-                        </div>
-                    </div>
-                </li>
-            {% endif %}
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            {% if rights == "rev" or rights == "adm" %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseReview" aria-expanded="true" aria-controls="collapseReview">
-                        <i class="fas fa-fw fa-user-cog"></i>
-                        <span>Reviews</span>
-                    </a>
-                    <div id="collapseReview" class="collapse" aria-labelledby="headingProfile" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Reviews</h6>
-                            <a class="collapse-item" id="review.twig" href="index.php?web=review">Write Review</a>
                         </div>
                     </div>
                 </li>
@@ -221,7 +224,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Slavomír Verner WEB 2019</span>
+                        <span>Slavomír Verner, WEB 2019</span>
                     </div>
                 </div>
             </footer>

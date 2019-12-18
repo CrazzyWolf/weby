@@ -16,6 +16,12 @@ class UserArticlesController extends DatabaseConnection
 
 		$this->data["articlesTable"] = $this->dbUsers->getUserArticles(Sessions::getID());
 
+		foreach($this->data["articlesTable"] as $key => $article)
+		{
+			$author = $this->dbUsers->getUser($article["author_id"]);
+			$this->data["articlesTable"][$key]["author"] = $author["first_name"] . " " . $author["last_name"];
+		}
+
 		parent::overallRating();
 
 		MyApplication::renderInTwig("userArticles.twig", $this->data);

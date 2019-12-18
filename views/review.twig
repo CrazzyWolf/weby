@@ -23,6 +23,8 @@
                     <div class="collapse" id="a{{ article.id }}">
                         <div class="card-body">
                             {{ article.content | raw }}
+                            <br>
+                            <div class="text-right">{{ article.author }}</div>
                             <hr>
                             <a href="index.php?web=showReviews&article={{ article.id }}"
                                class="btn btn-primary btn-sm col-2">

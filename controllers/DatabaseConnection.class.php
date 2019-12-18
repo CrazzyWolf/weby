@@ -16,6 +16,7 @@ abstract class DatabaseConnection
 		require_once(DIRECTORY_MODELS . "DatabaseArticles.class.php");
 		require_once(DIRECTORY_MODELS . "DatabaseReviews.class.php");
 		require_once(DIRECTORY_MODELS . "DatabaseUsers.class.php");
+
 		$this->connectToDB();
 		$this->dbArticles = new DatabaseArticles($this->pdo);
 		$this->dbReviews = new DatabaseReviews($this->pdo);
@@ -28,7 +29,9 @@ abstract class DatabaseConnection
 		{
 			$this->pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
 			//$this->pdo->exec("set names utf32");
+			$this->pdo->exec("set names utf32_czech");
 			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 		}
 		catch(PDOException $e)
 		{
