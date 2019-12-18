@@ -29,9 +29,7 @@ abstract class DatabaseConnection
 		{
 			$this->pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
 			//$this->pdo->exec("set names utf32");
-			$this->pdo->exec("set names utf32_czech");
 			$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 		}
 		catch(PDOException $e)
 		{
@@ -40,7 +38,7 @@ abstract class DatabaseConnection
 	}
 
 
-	protected function overallRating()
+	protected function overallRating() //prumerne hodnoceni hvezdami
 	{
 		$reviews = $this->dbReviews->getAllReviews();
 

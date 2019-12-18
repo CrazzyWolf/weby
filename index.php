@@ -30,7 +30,7 @@ class MyApplication extends DatabaseConnection
 			"404" => "404",
 			"403" => "403",
 		);
-		$this->mustBeLoggedPages = array
+		$this->mustBeLoggedPages = array //stranky na ktere musi byt uzivatel prihlasen
 		(
 			"admin",
 			"submitArticle",
@@ -39,7 +39,7 @@ class MyApplication extends DatabaseConnection
 			"review",
 			"profile"
 		);
-		$this->mustNotBeLoggedPages = array
+		$this->mustNotBeLoggedPages = array //stranky na ktere nesmi byt prihlasen
 		(
 			"login",
 			"register",
@@ -52,12 +52,12 @@ class MyApplication extends DatabaseConnection
 		session_start();
 		$accessAllowed = true;
 
-		if(isset($_GET["logout"]))
+		if(isset($_GET["logout"])) //odhlaseni
 		{
 			Sessions::logout();
 			$accessAllowed = false;
 		}
-		else if(isset($_GET["web"]))
+		else if(isset($_GET["web"])) //nazev webu
 		{
 			if(Sessions::isLogged())
 			{
@@ -101,7 +101,7 @@ class MyApplication extends DatabaseConnection
 				new $webKey($data);
 			}
 		}
-		else
+		else //pokud nema pristup tak je presmerovan na uvodni stranku
 		{
 			require_once DIRECTORY_CONTROLLERS . "ArticlesController.class.php";
 			new ArticlesController($data);
@@ -127,6 +127,7 @@ class MyApplication extends DatabaseConnection
 
 		echo $twig->render($template, $data);
 
+		//oznaceni aktualni stranky
 		echo "<script>
 			    document.getElementById('$template').className = \"collapse-item active\";
 			 </script>";
