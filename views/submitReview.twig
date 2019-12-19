@@ -2,9 +2,10 @@
 
 {% block content %}
     {% if article.name %}
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script src="dist/starrr.js"></script>
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+        <script src="ckeditor/ckeditor.js"></script>
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="dist/starrr.css">
         {% import "starMacro.twig" as starMacro %}
 
@@ -12,7 +13,6 @@
             <div class="col-auto">
                 <h4>Review of {{ article.name }}</h4>
                 <div class="card shadow mb-2">
-                    <script src="ckeditor/ckeditor.js"></script>
                     {% if error != "" and text != "" %}
                         <textarea id="text" class="form-control" name="text" id="text" rows="20">{{ text }}</textarea>
                     {% else %}
