@@ -33,14 +33,21 @@
                     <div class="collapse show" id="a{{ review.id }}">
                         <div class="card-body">
                             {{ review.content | raw }}
-                            {{ ratingMacro.singleRating(review.rating_1) }}
-                            Interestingness
-                            <br>
-                            {{ ratingMacro.singleRating(review.rating_2) }}
-                            Readability
-                            <br>
-                            {{ ratingMacro.singleRating(review.rating_3) }}
-                            Overall rating
+                            {% if review.rating_1 %}
+                                <br>
+                                {{ ratingMacro.singleRating(review.rating_1) }}
+                                Interestingness
+                            {% endif %}
+                            {% if review.rating_2 %}
+                                <br>
+                                {{ ratingMacro.singleRating(review.rating_2) }}
+                                Readability
+                            {% endif %}
+                            {% if review.rating_3 %}
+                                <br>
+                                {{ ratingMacro.singleRating(review.rating_3) }}
+                                Overall rating
+                            {% endif %}
                         </div>
                     </div>
                 </div>
